@@ -18,18 +18,19 @@ sort my mind.
 ## Current status of clarkok bot
 
 The clarkok bot has been through a handful of rewrites, the latest one started from Aug 23, 2020. In this rewrite, I
-switched to a partially generator-based implementation in typescript.
+switched to a generator-based implementation in typescript.
 
 While the clarkok bot is not even close to one of the most advanced bots in the world, it's not that bad. As of writing,
 [it](https://screeps.com/a/#!/profiler/clarkok) currently at #62 in MMO expansion rank, and #70 in the power rank. It
 achieved #17 in the past season 1 and it is doing well in the on-going season 2.
 
-Currently, clarkok bot is fully automated in managing in-room stuff, and has limited functionality to do auto attack /
-auto expansion. It has 37k lines of code, 418KB after bundling and minifying, with a 540KB source map.
+Currently, clarkok bot is fully automated in managing in-room stuff, and has the functionality to do attack / expansion,
+but the automated decision making for long range operations is not prefect yet. It has 37k lines of code, 418KB after
+bundling and minifying, with a 540KB source map.
 
 ```
 
-> wc `find ./src -name *.ts`
+> wc `find ./src -name *.ts` | tail 1
 37624   89438 1168501 total
 
 ```
@@ -43,3 +44,5 @@ auto expansion. It has 37k lines of code, 418KB after bundling and minifying, wi
 
  1. [Bot Structure](01-bot-structure.md)
  2. [Task Management](02-task-management.md)
+ 3. [Room Layout](03-room-layout.md)
+ 4. [Resource Management and Logistics](04-resource-management-and-logistics.md)

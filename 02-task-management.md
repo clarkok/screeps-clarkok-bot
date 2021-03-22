@@ -28,5 +28,5 @@ lengths between our storage and all the outpost sources, so we can limit the rem
 remote haul task when the container near the source actually contain the energy to haul.
 
 Also the role requirement is a good indicator of the spawn availability. Other parts of the bot like the outpost
-assignment can use this information to help make decisions. The downside of this approach is more CPU usage. But this
+assignment can use this information to help make decisions. The downside of this approach is higher CPU usage. But this
 can be overcame by caching the result over ticks and only recalculate when needed.
