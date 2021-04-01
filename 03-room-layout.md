@@ -1,8 +1,8 @@
 # Room Layout
 
-====
+----
 
-// TODO insert an image of typical layout of clarkok bot 
+![The Typical Room Layout](image/typical-layout.png)
 
 As you can see in the above image, the clarkok bot is using a flexible room layout. In the layout procedure, the bot
 will try every possible location for the spawn cluster, and for each attempt, place down the lab cluster, calculate the
@@ -18,7 +18,7 @@ most time-consuming part, to save us precious start up ticks.
 
 ## Spawn Cluster
 
-// TODO insert an image here
+![The Spawn Cluster](image/spawn-cluster.png)
 
 The spawn cluster contains all 3 spawns and most of those singleton structures available in RCL8 rooms, together with 12
 extensions, with a container in the center act as spawn cluster refill buffer. The spawn cluster is able to provide 1800
@@ -35,7 +35,7 @@ minimize.
 
 ## Lab Cluster
 
-// TODO insert an image here
+![The Lab Cluster](image/lab-cluster.png)
 
 The lab cluster contains all the 10 labs, a nuker and an observer. We put the nuker in the lab cluster instead of in the
 spawn cluster, because the nuker needs only 3energy/tick transfer rate and a trivial one for `G`, which is much smaller
@@ -101,7 +101,7 @@ that point.
 
 In the end, we will get something like below, we will avoid putting unwalkable structures on those road points.
 
-// TODO insert an image of the access map
+![The Access Map](image/access-map.png)
 
 ## Extensions and Towers
 
