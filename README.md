@@ -46,3 +46,5 @@ bundling and minifying, with a 540KB source map.
  2. [Task Management](02-task-management.md)
  3. [Room Layout](03-room-layout.md)
  4. [Resource Management and Logistics](04-resource-management-and-logistics.md)
+ 5. [Path and Movement](05-path-and-movement.md)
+

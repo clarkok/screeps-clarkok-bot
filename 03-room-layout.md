@@ -128,3 +128,32 @@ access. We will build a safe map base on it, a point is consider safe only if it
 points far from those points where enemy can stand at. Finally we add ramparts for all the roads and structures if they
 are not at safe. The safe map will be serialized and saved together with the plan result, and it will be used in room
 defense when it comes alive.
+
+## Bunker Design
+
+// TODO add an image of the bunker design
+
+The clarkok bot can use an experimental bunker design if the config is enabled and the room' terrain allows it to do so.
+The original decision on choosing flexible layout over bunker was made mainly because bunkers are boring, and the
+flexible design is cool. But my mind has been changed over time. :)
+
+Technically speaking, 1) the flexible design is more flexible, and it can suite more rooms than the bunker. 2) It needs
+potentially less ramparts, 3) and it can have shorter paths from the spawn cluster to sources and controllers. It is
+more start up friendly.
+
+But, 1) except on MMO where the world is crowded and you probably don't want to fight your neighbors who is always
+stronger than you, there can always be good rooms to fit bunkers. Besides, those weird shaped rooms themselves may not
+be even worth to take in the first place. 2) Less ramparts are better for building, but in practice they can be farer
+from the base, making the towers less effective or harder to refill. While for bunkers the main base is small enough, so
+every position around the base are guaranteed to be covered by at least one tower's strongest range, and the towers are
+really close to the storage. 3) The pathing advantage can only last till the links come into play. And even before the
+links, with proper extension layout and build order, the advance can be really small.
+
+4) The biggest advantage of the bunker design is the fixed and always optimized extension layout. To make sure the
+extensions won't block anything, the flexible layout is very preservative. We indeed won't block anything important, and
+in turn we are not using the best layout. This can leads lower refill power.
+
+If you look closely, the bunker design we are using is basically an improved version of the flexible one. The spawn
+cluster and the lab cluster are mostly the same, we only fixed the extensions and towers placement, and change how we
+place our ramparts. But due to this change, we now can refill our extensions super fast.
+
