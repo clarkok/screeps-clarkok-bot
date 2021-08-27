@@ -5,14 +5,13 @@
 ![The Typical Room Layout](image/typical-layout.png)
 
 As you can see in the above image, the clarkok bot is using a flexible room layout. In the layout procedure, the bot
-will try every possible location for the spawn cluster, and for each attempt, place down the lab cluster, calculate the
-roads to the sources / controller / mineral and the lab cluster, generate the extensions and towers in a dynamic manner,
-and then use the min-cut algorithm to place the ramparts. And from all those attempts, we choose the solution with
-minimum ramparts, and if multiple solutions use the same number of ramparts, we choose the one with smallest number of
-roads from spawn cluster to sources and controllers. 
+will try every possible locations for the spawn cluster. And, for each attempt, 1) place down the lab cluster, 2)
+calculate the roads from the spawn cluster to a few important locations, 3) generate the extensions and towers in a
+dynamic manner, and 4) use a weight min-cut algorithm to place the ramparts. And from all those attempts, we choose the
+one with highest room score, described in [Room Score and Auto Expansion](04-room-score-and-auto-expansion.md).
 
 The planner is written in generators, and the execution is split into multiple ticks (often in hundreds or even
-thousands of ticks), and executed by the room score federal level state machine ahead of room claiming, except for the
+thousands of ticks). It is executed by the room score federal level state machine ahead of room claiming, except for the
 first room after a respawn. As for the first room, we skip the rampart generation as it is the most time-consuming part,
 to save us precious start up ticks.
 
@@ -20,42 +19,42 @@ to save us precious start up ticks.
 
 ![The Spawn Cluster](image/spawn-cluster.png)
 
-The spawn cluster contains all 3 spawns and most of those singleton structures available in RCL8 rooms, together with 12
-extensions, with a container in the center act as the refill buffer. The spawn cluster is able to provide 1800 / 3300
-energy at RCL7 / RCL8. So together with those extensions around sources, we can spawn most of non-combat creeps without
-the need of carrier refilling other extensions.
+The spawn cluster contains all 3 spawns and most of those singleton structures available in RCL8 rooms, 12 extensions,
+and a container in the center act as the refill buffer. The spawn cluster is able to provide 1800 / 3300 energy at RCL7
+/ RCL8. With the help with those extensions placed around the source, we should be able to spawn most of non-combat
+creeps without drawing energy from other extensions.
 
-In the diagonal surrounding locations of that container, there sit 4 standing creeps. The one near terminal / factory
-and power spawn is the manager, and the others are fillers. The manager is responsive for balancing resources between
-the link / storage / terminal / factory and power spawn. It will also fill the center container. And the fillers
-will take energy from the container and fill spawns and extensions in the cluster.
+On the diagonal surrounding locations of the center container, there sit 4 move-less creeps. The one near terminal /
+factory and power spawn is the manager, and the others are fillers. The manager is responsive for balancing resources
+between those singleton structures. And it will also fill the center container. While the fillers will take energy from
+that container and fill spawns and extensions in the cluster.
 
-The spawn cluster is rotatable. It will rotate to make sure the distance between the storage and the controller is
-minimized.
+The spawn cluster is rotated to make sure the distance between the storage and the controller is minimized at the given
+center point.
 
 ## Lab Cluster
 
 ![The Lab Cluster](image/lab-cluster.png)
 
 The lab cluster contains all the 10 labs, a nuker and an observer. We put the nuker in the lab cluster instead of the
-spawn cluster, because it only needs 3 energy/tick with trivial `G`. The rate is much smaller than exchanging resource
-between storage and terminal. The lab cluster is also rotated to make sure the top right corner in the image has
-shortest path to terminal.
+spawn cluster because it only needs 3 energy/tick with some trivial `G`. This rate is much smaller than the rate of
+exchanging resource between storage and terminal. The lab cluster is also rotated to make sure the top right corner in
+the image has shortest path to terminal.
 
-Also, we will ensure the two road wings in the lab cluster is not blocked by terrain walls or extensions / towers, with
-the help of the accessibility system below. So when boosting the squads, they can always go into the lab cluster from
-the top right entrance, and leave the cluster from either of the wings. 
+Also, we will ensure the two road wings in the lab cluster is not blocked by terrain walls or non-walkable structures,
+with the help of the accessibility system below. So when creeps need to be boosted, they can always go into the lab
+cluster from the top right entrance, and leave the cluster from either of the wings without blocking each other. 
 
 ## Roads and the Accessibility System
 
-The path finder used in the planner is a hand-made one using A\* algorithm. It is a bit slower than the game provided
-one, but it give us more flexibility. For example we can use float number as the cost, and we can use condition to
-finish the path searching instead of using some destination points / ranges.
+The path finder used in the planner is a hand-made one with A\* algorithm. It is slightly slower than the game provided
+one, but it give us more flexibility. For example we can use float number as the cost, and we can use conditions to
+finish the path searching instead of some destination points / ranges.
 
 In the room planner's path finding, we prefer those points (called road points) at `(x + 52 - y) % 4 == A || (x + y) % 4
 == B`, so the path can have higher probability following below pattern, where the constant `A` and `B` are chosen to
-make sure the road before the storage is at the cross point. The reason we are doing this is, the roads placement is
-done before the extension placement, so we need to leave some space in advance. 
+make sure the road before the storage is on one of the cross points. The reason we are doing this is, the roads
+placement is done before the extension placement, so we need to leave some space in advance. 
 
 ```
 
@@ -68,16 +67,15 @@ rr      rr      rr
 
 ```
 
-We will calculate multiple paths at this stage, as listed below. The #1 part are done in a single path search targeting
-multiple destinations, and the result is used to evaluate the score of the layout.
+We will calculate multiple paths at this stage, as listed below:
 
  1. path from storage to each source, and the controller
  2. path from terminal to mineral
  3. path from terminal to the lab cluster
 
-Also, there can be some points of interests need to be accessible (we call them the access points. eg, the decoders in
-season #2). And we don't want our extensions, either those near the sources or others placed dynamically, block some
-narrow throttling points created by the terrain walls. So at this point the accessibility system comes in to play.
+Also, there can be some points of interests need to be accessible (aka. access points, Eg, the decoders in season #2).
+And we don't want our extensions, either those near the sources or others placed dynamically, block some narrow
+throttling points yielded by the terrain walls. Here the accessibility system comes in to play.
 
 We maintain a access road map, starting from a clone of the terrain map with the roads generated by the above steps, and
 the roads in both clusters. We will fill some other road points on that map, preventing future steps from placing
@@ -132,27 +130,19 @@ defense when the room comes alive.
 
 // TODO add an image of the bunker design
 
-The clarkok bot can use an experimental bunker design if the config is enabled and the room's terrain allows it to do
-so. The original decision on choosing flexible layout over the bunker was made mainly because bunkers are boring, and
-the flexible design is cool. But my mind was changed over time. :)
+The clarkok bot can also use a bunker design if it gets higher score. But in most of the cases, the bot prefer dynamic
+layout, mainly due to the number of ramparts, and the distance from storage to controller. Below list shows the major
+advantages comparing the bunker design to its counterpart:
 
-Technically speaking, 1) the flexible design is more flexible, and it can suite more rooms than the bunker. 2) It needs
-potentially less ramparts, 3) and it can have shorter paths from the spawn cluster to sources and controllers, being
-more start up friendly.
+1. it finishes MUCH faster than the dynamic one, mainly because it doesn't need to run the min cut
+2. it has more stable extension refill latency, so higher refill power
+3. it has more powerful towers, as the towers can almost always work in their optimal range 
 
-But, 1) except on MMO where the world is crowded and you probably don't want to fight your neighbors who are always
-stronger, there can always be good rooms to fit bunkers. Besides, those weird shaped rooms themselves may not be even
-worth to take in the first place. 2) Less ramparts are better for building, but in practice they can be farer from the
-base, making the towers less effective or harder to refill. While for bunkers the main base is small enough, so every
-position around the base are guaranteed to be covered by at least one tower's strongest range, and the towers are really
-close to the storage. 3) The pathing advantage can only last till the links come into play. And even before the links,
-with proper extension layout and build order, the advance can be really small.
+And the major disadvantages:
 
-The biggest advantage of the bunker design is the fixed and always optimized extension layout. To make sure the
-extensions won't block anything, the flexible layout is very conservative. We indeed won't block anything important, but
-in turn we are not using the best layout. This can leads lower refill power.
-
-If you look closely, the bunker design we are using is basically an improved version of the flexible one. The spawn
-cluster and the lab cluster are almost identical, we only fixed the extensions and towers placement, and change how we
-place our ramparts. But due to this change, we now can refill our extensions super fast.
+1. it uses more ramparts in most cases, although the ramparts are pretty close to the storage, the overall cost can be
+   higher
+2. it may have longer path length from storage to controller, causing higher upgrade cost
+3. it has more narrow paths from outside to the bunker center, potentially causing more traffic jam 
+4. it is not cool!
 

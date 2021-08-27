@@ -42,12 +42,13 @@ It has 37k lines of code, 418KB after bundling and minifying, with a 540KB sourc
     1. [Bot Structure](01-bot-structure.md)
     2. [Task Management](02-task-management.md)
     3. [Room Layout](03-room-layout.md)
-    4. [Resource Management and Logistics](04-resource-management-and-logistics.md)
-    5. [Path and Movement](05-path-and-movement.md)
-    6. CPU Management
+    4. [Room Score and Auto Expansion](04-room-score-and-auto-expansion.md)
+    5. [Resource Management and Logistics](05-resource-management-and-logistics.md)
+    6. [Path and Movement](06-path-and-movement.md)
+    7. CPU Management
   * Common Features
-    7. Outpost and Remote Mining
-    8. Claim New Rooms
+    8. Outpost and Remote Mining
+    9. Claim New Rooms
 
 ## Other resources for this game
 
