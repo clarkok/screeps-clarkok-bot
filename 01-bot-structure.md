@@ -9,7 +9,7 @@ Just like a few other bots, the clarkok bot uses state machines as its primary c
 bot uses a three-level state machine. From a top-down order, they are federal level, colony level and task level.
 
  * The federal level controls the highest level decision making, and coordinates all the colonies. It will give orders
-   to the colony level, either via memory, or via a flag-based directive system to be mentioned below 
+   to the colony level, either via memory, or via a flag-based directive system to be mentioned below
  * The colony level controls whatever inside a colony, like managing resources, spawning creeps and assigning tasks to
    them
  * The task level controls a single creep or a squad in the lifetime of a single task
@@ -62,7 +62,7 @@ will help each other only when needed or asked to. For now in the federal level,
 There are 2 kinds of features in the colony level. One kind of features are called strategies, every colonies will
 execute them, and the others are called directives, they will only be assign to colonies when needed. As for now the bot
 has 4 strategies, including development, mineral-related, intel and defense, and 21 directives, including offense,
-claim, deliver energy / resource to some location or help new colonies upgrade faster and etc. 
+claim, deliver energy / resource to some location or help new colonies upgrade faster and etc.
 
 ## Task Level
 
