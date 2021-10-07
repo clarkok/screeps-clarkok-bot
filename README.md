@@ -32,7 +32,7 @@ It has 51k lines of code, 1.31MB after bundling, with a 1.22MB source map.
 
 ```
 
-![line count](image/line_count.png)
+![line count](https://github.com/clarkok/screeps-clarkok-bot/blob/master/image/line-count.png)
 
 ## Content
 
