@@ -6,35 +6,33 @@
 
 [Screeps](https://screeps.com) is a MMORTS game in which you can write AI to operate units called creeps together with a
 few other structures. It's a sandbox game so everyone can do anything as long as it is not against ToS. To me, the goal
-is to create a competitive bot with high automation level, to survive and to conquer. 
+is to create a competitive bot with high automation level, to survive and to conquer.
 
 ## But there is no code in this repo
 
-The game itself doesn't prevent gamers from using open source bots developed by other players, but overall it is a
-coding game. So most of fun comes from building the bot yourself. I'm not going to put my bot open source for others to
-use it, but instead I'll introduce the structure and the design of it, to help beginners learn quickly, and to help
-myself sort my mind.
+The game itself doesn't prevent players from using open source bots developed by others, but overall it is acoding game. So most of fun comes from developing the bot yourself. I'm not going to put my bot open source for others touse it, but instead I'll introduce the structure and the design of it, to help beginners learn quickly, and to helpmyself sort my mind.
 
-## Current status of clarkok bot
+## Current status of the clarkok bot
 
-The clarkok bot has gone through a handful of rewrites, the latest one started from Aug 23rd, 2020. In this rewrite, I
-switched to a generator-based implementation in typescript.
+The clarkok bot has gone through a handful of rewrites, the latest one started from Aug 23rd, 2020. In this rewrite, I switched to a generator-based implementation in typescript.
 
 While the clarkok bot is not even close to one of the most advanced bots in the world, it's not that bad. As of writing,
-[the bot](https://screeps.com/a/#!/profiler/clarkok) is currently at #62 in MMO expansion rank, and #70 in the power
-rank. It achieved #17 in the past season 1 and it is doing well in the on-going season 2.
+[the bot](https://screeps.com/a/#!/profile/clarkok) is currently at #24 in MMO expansion rank, and #70 in the power
+rank. It achieved #17 in the past season 1, #11 in season 2 and #8 in season 3.
 
 Currently, the clarkok bot is fully automated in managing all the in-room stuff, and has the functionality to attack and
 expand, but the automated decision making for long range operations is not prefect yet.
 
-It has 37k lines of code, 418KB after bundling and minifying, with a 540KB source map.
+It has 51k lines of code, 1.31MB after bundling, with a 1.22MB source map.
 
 ```
 
-> wc `find ./src -name *.ts` | tail 1
-37624   89438 1168501 total
+> wc `find ./src -name *.ts` | tail -n 1
+51713  123817 1594716 total
 
 ```
+
+![line count](image/line_count.png)
 
 ## Content
 
@@ -45,12 +43,20 @@ It has 37k lines of code, 418KB after bundling and minifying, with a 540KB sourc
     4. [Room Score and Auto Expansion](04-room-score-and-auto-expansion.md)
     5. [Resource Management and Logistics](05-resource-management-and-logistics.md)
     6. [Path and Movement](06-path-and-movement.md)
-    7. CPU Management
+    7. [CPU Management](07-cpu-management.md)
   * Common Features
-    8. Outpost and Remote Mining
-    9. Claim New Rooms
+    - Outpost and Remote Mining
+    - Claim New Rooms
 
 ## Other resources for this game
 
  * [Official docs](https://docs.screeps.com/)
- * [Community Wiki](https://wiki.screepssp.us/)
+ * [Community Wiki](https://wiki.screepspl.us/)
+
+## Disclaimer
+
+ * I'm still learning English, so don't be surprised if you find tons of typos or even grammar issues in the repo 😛
+ * Feel free to pick any ideas from here
+ * While I can't stop you, I'd be really happy if you can ask before repost / redistribute the content from here
+ 
+Please @clarkok on Screeps Discord or open an issue for anything.
