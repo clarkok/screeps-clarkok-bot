@@ -1,7 +1,5 @@
 # Resource Management and Logistics
 
-----
-
 The clarkok bot can make use of almost all kinds of the resources in the game, from the basic energy and minerals to the power and commodities. Each room can keep a relative healthy economy by themselves and when needed rooms will supporteach other.
 
 ## In-room Energy Management

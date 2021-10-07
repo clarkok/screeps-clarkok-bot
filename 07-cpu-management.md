@@ -1,7 +1,5 @@
 # CPU Management
 
-----
-
 Nothing is infinite. In the early game the spawn time would be the limitation, in the mid game the energy and in the late game, it is the CPU. Without any control, as you are adding more and more features in your bot, the CPU will eventually be insufficient no matter how you optimize the code. 
 
 The CPU management in the clarkok bot can be split into three parts: 1) CPU planning, 2) different behavior upon different CPU situations and 3) emergency recovery. 

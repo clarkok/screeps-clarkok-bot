@@ -1,7 +1,5 @@
 # screeps-clarkok-bot
 
-----
-
 ## What's Screeps
 
 [Screeps](https://screeps.com) is a MMORTS game in which you can write AI to operate units called creeps together with a
@@ -45,8 +43,8 @@ It has 51k lines of code, 1.31MB after bundling, with a 1.22MB source map.
     6. [Path and Movement](06-path-and-movement.md)
     7. [CPU Management](07-cpu-management.md)
   * Common Features
-    - Outpost and Remote Mining
-    - Claim New Rooms
+    - [planned] Outpost and Remote Mining
+    - [planned] Claim New Rooms
 
 ## Other resources for this game
 

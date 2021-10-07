@@ -1,7 +1,5 @@
 # Room Layout
 
-----
-
 ![The Typical Room Layout](image/typical-layout.png)
 
 As you can see in the above image, the clarkok bot is using a flexible room layout. In the layout procedure, the botwill try every possible locations for the spawn cluster. And, for each attempt, 1) place down the lab cluster, 2)calculate the roads from the spawn cluster to a few important locations, 3) generate the extensions and towers in adynamic manner, and 4) use a weighted min-cut algorithm to place the ramparts. And from all those attempts, we choose theone with highest room score, described in [Room Score and Auto Expansion](04-room-score-and-auto-expansion.md).

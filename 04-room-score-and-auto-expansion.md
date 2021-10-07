@@ -1,7 +1,5 @@
 # Room Score and Auto Expansion
 
-----
-
 The clarkok bot has the ability to choose its next expanding target. To achieve this, the bot will score every room ithas intel of, and choose a best room when doing auto expansion. The score is calculated in below manner:
 
 > Room Score = Nature Score * Environment Multiplier

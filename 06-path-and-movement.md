@@ -1,7 +1,5 @@
 # Path and Movement
 
-----
-
 Path finding and moving is an indispensable part of almost all of the bots, and also a CPU consuming one. If not taken care of.Wrong path finding result can prevent creeps from doing their jobs, and may eat CPU bucket quickly and lead to
 catastrophic failure as the results.
 

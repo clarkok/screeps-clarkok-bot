@@ -1,7 +1,5 @@
 # Bot Structure
 
-----
-
 The clarkok bot is a multi-room bot, it structures its owned rooms as colonies. Each colony consists of an owned room together with its surrounding remote outposts. And all the colonies join their force and form a federal state.
 
 Just like a few other bots, the clarkok bot uses state machines as its primary control mechanism. More specifically, the

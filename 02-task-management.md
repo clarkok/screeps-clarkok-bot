@@ -1,7 +1,5 @@
 # Task Management
 
-----
-
 Instead of the so-called role-based approach mentioned in the Screeps tutorial, the clarkok bot uses a task-basedsolution, together with a role requirement system to manage the creeps and tasks in each colony.
 
 Creeps used by the clarkok bot are categorized in roles, for example we have role Miner, Carrier, Worker etc. As for now,the bot has 38 roles. The meaning of the term 'role' here is slightly different to the 'role' in the tutorial. A role in the clarkok bot decides the layout of creep body with current available energy in the room, and decides which kind of tasks acreep in the role can take.
