@@ -73,6 +73,18 @@ First we will place the extensions and links near sources. We use the last point
 
 To place the rest of extensions and towers, we will do a flood fill again from the road right before the storage. Foreach point we fill, we will put a road if it is a *road point* and at least one of its surroundings has not beenvisited. Otherwise we put an extension or a tower, based on the number of placed structures and the availability in eachRCL.
 
+## Source Extensions, or Not?
+
+Recently on Discord we had a discussion about whether or not to use source extensions. The good part of them would be, easier / less intents to refill, easier to build and they can lower the cost to haul energy around, while the bad part is they are more dangerous and the refill rate can be insufficient sometimes that block spawning new creeps.
+
+The clarkok bot still choose to use them, as they are really good for the early game. During startup, before we can spawn full sized miners to drain the sources, the clarkok bot will send 2 creeps for each source if it have enough open spots around. One is the miner, with 2W1C1M or 3W1C2M later on, to mine the source and fill the extensions / links when available. The other is the helper, with a fixed 2W1C1M layout, it will help drain the source and build surrounding cSites using the energy it harvest and the energy dropped by the miner. In this scheme, the source extensions can be built super quickly.
+
+And the clarkok bot will always use the source extensions first when spawning creeps. This is good for the small sized haulers used in the bucket chain during early games. There will be no logistics cost for spawning such creeps and as there are only move and carry parts, the refill rate would be sufficient for rooms with 2 sources.
+
+To walk around the insufficient refill rate which may block spawning at low RCL, the clarkok bot would maintain a energy buffer in the source containers. During low RCLs we'd only haul energy / send energy via links if only the energy level exceed 1k, and for higher RCLs we keep the energy level enough for filling the source extensions for at least one time.
+
+As for the safety concerns, the clarkok bot would try to keep the sources and their surrounding structures within the ramparts. If it is too costly to keep them in, the bot will build ramparts on the source structures. And weight that in when calculating room scores.
+
 ## Ramparts
 
 After all the structures are placed, we can finally setup the ramparts. The min-cut algorithm is straight forward, werun it and it will give us a set of points forming a cut from the base to the exits. We put ramparts on those points.But that's not enough, as the ranged killers are sometimes strong enough to kill our defenders even before they get tothe ramparts. We need to build roads and extra protection for those defenders.
