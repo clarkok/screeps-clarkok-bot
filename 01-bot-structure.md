@@ -3,17 +3,17 @@
 The clarkok bot is a multi-room bot, it structures its owned rooms as colonies. Each colony consists of an owned room together with its surrounding remote outposts. And all the colonies join their force and form a federal state.
 
 Just like a few other bots, the clarkok bot uses state machines as its primary control mechanism. More specifically, the
-bot uses a three-level state machine. From a top-down order, they are federal level, colony level and task level.
+bot uses a three-level state machine. From top to bottom, they are federal level, colony level and task level.
 
  * The federal level controls the highest level decision making, and coordinates all the colonies. It will give orders to the colony level, either via memory, or via a flag-based directive system to be mentioned below
  * The colony level controls whatever inside a colony, like managing resources, spawning creeps and assigning tasks to them
  * The task level controls a single creep or a squad in the lifetime of a single task
 
-And each level can be broken down to multiple features, those features manage their own states. Some state machines arenot written out explicitly. For federal level and colony level features, each of them will have a method`TickFederalXXX` or `TickDirectiveXXX` which will be invoked for each tick, to check and modify their own states. Fortask level tasks, each of them will have a generator function whose `.next()` will be called each tick, to operate theircreeps or squads.
+And each level can be broken down to multiple features, those features manage their own states. Some state machines arenot written out explicitly. For federal level and colony level features, each of them will have a method`TickFederalXXX` or `TickDirectiveXXX` which will be invoked for each tick, to check and modify their own states. On the other hand, thetask level state machines are generators, whose `.next()` will be called each tick, to operate theircreeps or squads.
 
 ## The Command Chain, Directive System and Task System
 
-The highest commands will be given by the human player or the federal level state machine. And most of time the commandwill be given in the following format: "HOW do WHICH colony do WHAT at WHEN", for example I need colony W3N8 attack aninvader core in room W4N5 using a single attacker now. The directive is given by placing a flag, whose primary color isred (attack), and secondary color is red (single attacker), in W4N5 (the target), and we set the flag name to`Flag1?owner=W3N8`, indicating the directive is given to W3N8. The flag can be placed either by a human manually, or by the federallevel automatically.
+The highest commands will be given by the human player or the federal level state machine. And most of time the commandwill be given in the following format: "HOW should WHICH colony do WHAT at WHEN", for example I need colony W3N8 to attack aninvader core in room W4N5 using a single attacker now. The directive is given by placing a flag, whose primary color isred (attack), and secondary color is red (single attacker), in W4N5 (the target), and we set the flag name to`Flag1?owner=W3N8`, indicating the directive is given to W3N8. The flag can be placed either by a human manually, or by the federallevel statement automatically.
 
 There are 2 major reasons to use flags here. 1) the flags is visible to both the bot, and the human player, so I can seethose existing directives when viewing the target room. 2) the human player can remove the flag if they want to stop adirective. For now we don't have a working android client, adding / removing flags is the primary approach that I use tocontrol my bot on my mobile phone. : )
 
