@@ -16,9 +16,9 @@ The game itself doesn't prevent players from using open source bots developed by
 
 The clarkok bot has gone through a handful of rewrites, the latest one started from Aug 23rd, 2020. In this rewrite, I switched to a generator-based implementation in typescript.
 
-While the clarkok bot is not even close to one of the most advanced bots in the world, it's not that bad. As of writing,[the bot](https://screeps.com/a/#!/profile/clarkok) is currently at #24 in MMO expansion rank, and #70 in the powerrank. It achieved #17 in the past season 1, #11 in season 2 and #8 in season 3.
+While the clarkok bot is not even close to one of the most advanced bots in the world, it's not that bad. As of writing, [the bot](https://screeps.com/a/#!/profile/clarkok) is currently at #24 in MMO expansion rank, and #70 in the powerrank. It achieved #17 in the past season 1, #11 in season 2 and #8 in season 3.
 
-Currently, the clarkok bot is fully automated in managing all the in-room stuff, and has the functionality to attack andexpand, but the automated decision making for long range operations is not prefect yet.
+Currently, the clarkok bot is fully automated in managing all the in-room stuff, and has the functionality to attack and expand, but the automated decision making for long range operations is not prefect yet.
 
 It has 51k lines of code, 1.31MB after bundling, with a 1.22MB source map.
 
