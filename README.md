@@ -18,7 +18,7 @@ The clarkok bot has gone through a handful of rewrites, the latest one started f
 
 While the clarkok bot is not even close to one of the most advanced bots in the world, it's not that bad. As of writing, [the bot](https://screeps.com/a/#!/profile/clarkok) is currently at #24 in MMO expansion rank, and #70 in the power rank. It achieved #17 in the past season 1, #11 in season 2 and #8 in season 3.
 
-Currently, the clarkok bot is fully automated in managing all the in-room stuff, and has the functionality to attack and expand, but the automated decision making for long range operations is not prefect yet.
+Currently, the clarkok bot is fully automated in managing all the in-room stuff, and has the functionality to attack and expand, but the automated decision making for long range operations is not perfect yet.
 
 It has 51k lines of code, 1.31MB after bundling, with a 1.22MB source map.
 
